@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {AuthService} from './auth.service';
+import {AuthService} from './services/auth.service';
 import {catchError, map} from 'rxjs/operators';
-import {SessionService} from './session.service';
+import {SessionService} from './services/session.service';
 
 // service pour bloquer les pages quand on est pas connecté
 
 @Injectable({
   providedIn: 'root'
 })
-export class GuardService implements CanActivate {
+export class AuthGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
@@ -23,10 +23,9 @@ export class GuardService implements CanActivate {
       catchError((error: Response) => {
         let status = 500;
         if (error.status === 401 || error.status === 403) { // unauthorized or forbidden //
-          this.router.navigate(['/auth/signin']).then(() => {
-            AuthService.user = null;
-            this.sessionService.clear();
-          });
+          // this.router.navigate(['/auth/signin']).then(() => {
+          //   this.authService.signout();
+          // });
           status = error.status;
         }
         return of({ status });

@@ -8,11 +8,10 @@ import {AuthService} from '../../../core/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   user = AuthService.user;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

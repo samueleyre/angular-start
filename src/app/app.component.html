@@ -1,1 +1,19 @@
+<nav>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="isLogged$ | async" routerLink="/auth/signin" mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Se déconnecter</span>
+    </button>
+    <button *ngIf="!(isLogged$ | async)" routerLink="/auth/signin" mat-menu-item>
+      <mat-icon>login</mat-icon>
+      <span>Se connecter</span>
+    </button>
+    <button *ngIf="!(isLogged$ | async)" routerLink="/auth/signup" mat-menu-item>
+      <span>S'inscrire</span>
+    </button>
+  </mat-menu>
+</nav>
 <router-outlet></router-outlet>
