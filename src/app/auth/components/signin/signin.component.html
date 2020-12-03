@@ -1,4 +1,4 @@
-<form [formGroup]="userForm">
+<form [formGroup]="userForm" (ngSubmit)="signin()" >
   <mat-form-field appearance="legacy">
     <mat-label>Email</mat-label>
     <input matInput type="email" placeholder="Email" formControlName="email">
@@ -9,6 +9,18 @@
       L'email est <b>obligatoire</b>
     </mat-error>
   </mat-form-field>
-
+  <mat-form-field appearance="legacy">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput type="password" placeholder="Mot de passe" formControlName="password">
+    <mat-error *ngIf="userForm.controls.password.hasError('minLength') && !userForm.controls.password.hasError('required')">
+      Le mot de passe doit avoir au minimum 6 caractères.
+    </mat-error>
+    <mat-error *ngIf="userForm.controls.password.hasError('required')">
+      Le mot de passe est <b>obligatoire</b>
+    </mat-error>
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="accent" >
+    Connexion
+  </button>
 </form>
 
