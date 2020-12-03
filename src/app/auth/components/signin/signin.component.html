@@ -1,0 +1,14 @@
+<form [formGroup]="userForm">
+  <mat-form-field appearance="legacy">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" placeholder="Email" formControlName="email">
+    <mat-error *ngIf="userForm.controls.email.hasError('email') && !userForm.controls.email.hasError('required')">
+      L'email n'est pas valide
+    </mat-error>
+    <mat-error *ngIf="userForm.controls.email.hasError('required')">
+      L'email est <b>obligatoire</b>
+    </mat-error>
+  </mat-form-field>
+
+</form>
+
