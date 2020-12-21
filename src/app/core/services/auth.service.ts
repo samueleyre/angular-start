@@ -5,6 +5,12 @@ import {Observable} from 'rxjs';
 import { User } from '../entities/user';
 import { environment} from '../../../environments/environment';
 
+
+/*
+ * Cette méthode 
+ */
+
+
 @Injectable({
   providedIn: 'root'
 })
