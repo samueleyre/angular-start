@@ -12,6 +12,8 @@ import {SessionService} from './session.service';
 })
 export class AuthService {
 
+  static user: User | null = null;
+
   constructor(
     private httpClient: HttpClient,
     private sessionService: SessionService
@@ -39,6 +41,11 @@ export class AuthService {
   me(): Observable<any> {
     return this.httpClient.get(
       `${environment.api}/api/ping`
+    ).pipe(
+      tap((user: User) => {
+        console.log({user});
+        AuthService.user = user;
+      }),
     );
   }
 
