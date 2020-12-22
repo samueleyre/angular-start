@@ -12,6 +12,10 @@ const routes: Routes = [
     canActivate: [CanActivateGuard],
     loadChildren: () => import('./dash/dash.module').then(mod => mod.DashModule),
   },
+  {
+    path: '**',
+    redirectTo: 'auth/signin'
+  }
 
 ];
 

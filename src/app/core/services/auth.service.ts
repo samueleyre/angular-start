@@ -12,12 +12,16 @@ import {SessionService} from './session.service';
 })
 export class AuthService {
 
-  static user: User = null;
-
   constructor(
     private httpClient: HttpClient,
     private sessionService: SessionService
   ) { }
+
+  static user: User = null;
+
+  static get isSignedIn(): boolean {
+    return !!AuthService.user;
+  }
 
   signin(email: string, password: string): Observable<any> {
     return this.httpClient.post(
@@ -49,6 +53,11 @@ export class AuthService {
         AuthService.user = user;
       })
     );
+  }
+
+  signout(): void {
+    this.sessionService.clear();
+    AuthService.user = null;
   }
 
 
