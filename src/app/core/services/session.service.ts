@@ -11,7 +11,7 @@ export class SessionService {
     localStorage.setItem('token', token);
   }
 
-  getToken(): string {
+  getToken(): string | null {
     return localStorage.getItem('token');
   }
 
