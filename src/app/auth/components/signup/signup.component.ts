@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 import {User} from '../../../core/entities/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
   userForm = this.fb.group({
@@ -45,6 +47,13 @@ export class SignupComponent implements OnInit {
     const newUser = new User(this.userForm.getRawValue());
     this.authService.signup(newUser).subscribe(
       () => {
+        // inscription réussie !
+        this.authService.signin(newUser.email, newUser.password).subscribe(
+          () => {
+            this.router.navigate(['dash/home']);
+          }, () => {
+          }
+        );
 
       }, (err) => {
         // afficher ici les erreurs de type duplicata

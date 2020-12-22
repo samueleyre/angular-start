@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
-import {tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +11,11 @@ import {tap} from 'rxjs/operators';
 export class SigninComponent implements OnInit {
 
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+  ) {
   }
 
   userForm = this.fb.group({
@@ -42,7 +46,8 @@ export class SigninComponent implements OnInit {
       this.passwordControl.value
     ).subscribe(
       (result) => {
-        console.log({ result });
+        // connexion est réussie !
+        this.router.navigate(['dash/home']);
       },
       (err) => {
         // on peut dire à l'utilisateur qu'il n'a pas donné les bons identifiants
