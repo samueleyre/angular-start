@@ -10,6 +10,6 @@ export class User {
     this.first_name = 'first_name' in obj ? obj.first_name : '';
     this.last_name = 'last_name' in obj ? obj.last_name : '';
     this.email = 'email' in obj ? obj.email : '';
-    this.password = 'passwrd' in obj ? obj.password : '';
+    this.password = 'password' in obj ? obj.password : '';
   }
 }

@@ -4,11 +4,12 @@ import { SigninComponent } from './components/signin/signin.component';
 import {AuthRoutingModule} from './auth-routing.module';
 import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 
 @NgModule({
-  declarations: [SigninComponent],
+  declarations: [SigninComponent, SignupComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
