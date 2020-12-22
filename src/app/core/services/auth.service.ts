@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 
 import { User } from '../entities/user';
 import { environment} from '../../../environments/environment';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,11 @@ export class AuthService {
     return this.httpClient.post(
       `${environment.api}/api/login_check`,
       {email, password}
-      );
+      ).pipe(
+      tap(response => {
+        console.log('token', response.token);
+      })
+    );
   }
 
   signup(user: User): Observable<any> {
@@ -31,5 +36,7 @@ export class AuthService {
       `${environment.api}/api/ping`
     );
   }
+
+  
 
 }

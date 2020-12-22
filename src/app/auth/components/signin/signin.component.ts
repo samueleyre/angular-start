@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-signin',
@@ -14,8 +15,8 @@ export class SigninComponent implements OnInit {
   }
 
   userForm = this.fb.group({
-    email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, Validators.minLength(6)]]
+    email: ['samuel@wecolearn.com', [Validators.required, Validators.email]],
+    password: ['admin1234', [Validators.required, Validators.minLength(6)]],
   });
 
   ngOnInit() {
@@ -30,15 +31,23 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
-    // connexion
+
     console.log('submitted : ');
+
+    // toutes les données du formulaire
     console.log(this.userForm.getRawValue());
+
     this.authService.signin(
       this.emailControl.value,
       this.passwordControl.value
-    ).subscribe((result) => {
-      console.log({ result });
-    });
+    ).subscribe(
+      (result) => {
+        console.log({ result });
+      },
+      (err) => {
+        // on peut dire à l'utilisateur qu'il n'a pas donné les bons identifiants
+        console.log({ err });
+      });
   }
 
 
