@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
+import {map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-signin',
@@ -13,8 +14,8 @@ export class SigninComponent implements OnInit {
 
   userForm = this.fb.group(
     {
-      email: ['samuel@test.fr',  [Validators.required, Validators.email]],
-      password: ['password', [Validators.required, Validators.minLength(6)]]
+      email: ['samuel@wecolearn.com',  [Validators.required, Validators.email]],
+      password: ['admin1234', [Validators.required, Validators.minLength(6)]]
     }
   );
 
@@ -30,16 +31,13 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
-    // const submit = this.userForm.getRawValue();
     this.authService.signin(
       this.emailControl.value,
       this.passwordControl.value
-    ).subscribe((result) => {
-      console.log({result});
+    ).subscribe((token) => {
+      // console.log('token récupéré', token);
     });
   }
-
-
 
 
 }

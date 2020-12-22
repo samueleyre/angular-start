@@ -4,6 +4,8 @@ import {Observable} from 'rxjs';
 import {User} from '../entities/user';
 
 import {environment} from '../../../environments/environment';
+import {tap} from 'rxjs/operators';
+import {SessionService} from './session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ import {environment} from '../../../environments/environment';
 export class AuthService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private sessionService: SessionService
   ) { }
 
   signin(email: string, password: string): Observable<any> {
@@ -21,6 +24,10 @@ export class AuthService {
         email,
         password
       }
+    ).pipe(
+      tap((result) => {
+        this.sessionService.setToken(result.token);
+      }),
     );
   }
 
@@ -31,7 +38,7 @@ export class AuthService {
     );
   }
 
-  // récupérer les données de l'utilisateur connecté
+  // vérifier si l'utilisateur est connecté et récupérer les données de l'utilisateur
   me(): Observable<any> {
     return this.httpClient.get(
       `${environment.api}/api/ping`,
