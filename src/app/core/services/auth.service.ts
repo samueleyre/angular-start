@@ -5,13 +5,17 @@ import {Observable} from 'rxjs';
 import { User } from '../entities/user';
 import { environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
+import {SessionService} from './session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private sessionService: SessionService
+  ) { }
 
   signin(email: string, password: string): Observable<any> {
     return this.httpClient.post(
@@ -20,6 +24,7 @@ export class AuthService {
       ).pipe(
       tap(response => {
         console.log('token', response.token);
+        this.sessionService.setToken(response.token);
       })
     );
   }
@@ -37,6 +42,6 @@ export class AuthService {
     );
   }
 
-  
+
 
 }
