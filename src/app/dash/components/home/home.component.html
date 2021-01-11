@@ -1,3 +1,21 @@
 <h1>Dashboard</h1>
 
 <p>Bienvenue {{user.first_name}} {{user.last_name}}</p>
+
+<p>Voici les apprenants qui souhaitent apprendre la même chose que vous :</p>
+
+<div class="cards-container" *ngIf="matchs$ | async as matchs">
+  <div *ngFor="let matchedUser of matchs">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{matchedUser.first_name}} {{matchedUser.last_name}}</mat-card-title>
+        <mat-card-subtitle>{{matchedUser.tags[0].name}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{matchedUser.biographie}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

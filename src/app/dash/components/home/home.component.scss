@@ -8,3 +8,18 @@ p {
   margin-top: 50px;
 }
 
+.cards-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  mat-card {
+    margin: 40px;
+    width: 400px;
+    p {
+      text-align: justify;
+    }
+  }
+
+
+}
+
