@@ -9,13 +9,8 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{matchedUser.first_name}} {{matchedUser.last_name}}</mat-card-title>
-        <mat-card-subtitle>{{matchedUser.tags[0].name}}</mat-card-subtitle>
+        <mat-card-subtitle><span *ngFor="let tag of matchedUser.tags">{{tag.name}} </span></mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{matchedUser.biographie}}
-        </p>
-      </mat-card-content>
     </mat-card>
   </div>
 </div>

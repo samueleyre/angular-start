@@ -1,3 +1,4 @@
+/* tslint:disable:no-string-literal */
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
@@ -20,7 +21,7 @@ export class MatchService {
       `${environment.api}/api/user/matchs`,
       {}
     ).pipe(
-      map(result => result.data.map(val => val[0])),
+      map(result => result['data'].map(val => val[0])),
     );
   }
 
