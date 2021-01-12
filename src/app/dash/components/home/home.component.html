@@ -5,3 +5,16 @@
 <p>
   Bienvenue {{user.first_name}} {{user.last_name}}
 </p>
+
+<p>Voici les profils qui souhaitent apprendre les mêmes choses que vous :</p>
+
+<div class="match-container">
+  <mat-card *ngFor="let matchedUser of matchs">
+    <mat-card-header>
+      <mat-card-title>{{matchedUser.first_name}} {{matchedUser.last_name}}</mat-card-title>
+      <mat-card-subtitle>
+        <span *ngFor="let tag of matchedUser.tags">{{tag.name}} </span>
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</div>
