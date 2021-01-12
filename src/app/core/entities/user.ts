@@ -1,10 +1,13 @@
 /* tslint:disable:variable-name */
+import {TagInterface} from '../interfaces/tag.interface';
+
 export class User {
-  id: string;
+  id?: string;
   first_name: string;
   last_name: string;
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
+  tags?: TagInterface[];
 
   constructor(obj?: any) {
     this.first_name = 'first_name' in obj ? obj.first_name : '';

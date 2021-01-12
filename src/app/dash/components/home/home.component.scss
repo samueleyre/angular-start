@@ -6,3 +6,13 @@ h1 {
 p {
   text-align: center;
 }
+
+.matchs-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  mat-card {
+    width: 300px;
+    margin: 20px;
+  }
+}
