@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import { ProfileComponent } from './components/profile/profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {UserPartsModule} from '../shared/user-parts/user-parts.module';
 
 
 
@@ -18,7 +19,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    UserPartsModule
   ]
 })
 export class DashModule { }
