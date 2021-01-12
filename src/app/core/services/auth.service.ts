@@ -19,6 +19,10 @@ export class AuthService {
     private sessionService: SessionService
   ) { }
 
+  static get isSignedIn(): boolean {
+    return AuthService.user !== null;
+  }
+
   signin(email: string, password: string): Observable<any> {
     return this.httpClient.post(
       `${environment.api}/api/login_check`,
