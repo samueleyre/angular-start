@@ -6,7 +6,7 @@
   Bienvenue {{user.first_name}} {{user.last_name}}
 </p>
 
-<p>Voici les profils qui souhaitent apprendre les mêmes choses que vous :</p>
+<p>Voici les profils qui souhaitent apprendre <span *ngFor="let tag of user.tags"><b>{{tag.name}} </b></span> avec vous :</p>
 
 <div class="match-container">
   <mat-card *ngFor="let matchedUser of matchs">
