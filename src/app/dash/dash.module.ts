@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {DashRoutingModule} from './dash-routing.module';
 import { HomeComponent } from './components/home/home.component';
-import {MatCardModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import { ProfileComponent } from './components/profile/profile.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -12,7 +13,12 @@ import { ProfileComponent } from './components/profile/profile.component';
   imports: [
     CommonModule,
     DashRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSelectModule
   ]
 })
 export class DashModule { }
