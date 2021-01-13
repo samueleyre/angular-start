@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {AuthService} from './services/auth.service';
 import {catchError, map, tap} from 'rxjs/operators';
+import {User} from './entities/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanActivateGuard implements CanActivate {
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) {
   }
 
   canActivate(
@@ -25,8 +29,12 @@ export class CanActivateGuard implements CanActivate {
         }
         return of({ status });
       }),
-      map((response: Response ) => {
-        if (response.status === 401 || response.status === 403) {
+      map((response: Response | User ) => {
+        if ('status' in response && (response.status === 401 || response.status === 403)) {
+          this.router.navigate(['/auth/signin']);
+          return false;
+        } else if ('admin' in next.data && 'roles' in response && !response.roles.includes('ROLE_ADMIN')) {
+          this.router.navigate(['/auth/signin']);
           return false;
         }
         return true;
