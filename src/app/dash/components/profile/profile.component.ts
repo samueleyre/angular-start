@@ -3,7 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {ProfileService} from '../../../core/services/profile.service';
 import {TagService} from '../../../core/services/tag.service';
 import {Observable} from 'rxjs';
-import {Tag} from '@angular/compiler/src/i18n/serializers/xml_helper';
+import {TagInterface} from '../../../core/interfaces/tag';
 
 @Component({
   selector: 'app-profile',
@@ -55,5 +55,9 @@ export class ProfileComponent implements OnInit {
   updateProfile(): void {
     const userChanges = this.userForm.getRawValue();
     this.profileService.update(userChanges).subscribe();
+  }
+
+  compareFn(tag1: TagInterface, tag2: TagInterface) {
+    return tag1 && tag2 ? tag1.id === tag2.id : tag1 === tag2;
   }
 }

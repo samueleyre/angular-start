@@ -19,7 +19,9 @@ export class MatchService {
   matchs$(): Observable<any> {
     return this.httpClient.post(
       `${environment.api}/api/user/matchs`,
-      {}
+      {
+        max: 30
+      }
     ).pipe(
       map(result => result['data'].map(val => val[0])),
     );
