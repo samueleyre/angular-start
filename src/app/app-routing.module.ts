@@ -12,10 +12,16 @@ const routes: Routes = [
     path: 'dash',
     // guard pour empêcher l'accès aux utilisateurs non connectés
     canActivate: [CanActivateGuard],
-    // donnée utilisée pour dire que c'est une route admin :
     data: { admin : true },
     // lazy loading :
     loadChildren: () => import('./dash/dash.module').then(mod => mod.DashModule),
+  },
+  {
+    // donnée utilisée pour dire que c'est une route admin :
+    path: 'admin',
+    canActivate: [CanActivateGuard],
+    data: { admin: true},
+    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
   },
   {
     // on est redirigé vers la page de connexion si la route n'est pas définie ( le top serait une page 404 )

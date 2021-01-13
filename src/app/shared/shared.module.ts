@@ -7,14 +7,14 @@ import {
   MatIconModule,
   MatInputModule,
   MatMenuModule,
-  MatSelectModule
+  MatSelectModule,
+  MatSnackBarModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 
 /*
 Ce module set à rassembler les dépendances les plus récurrentes
  */
-
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +25,8 @@ Ce module set à rassembler les dépendances les plus récurrentes
     MatIconModule,
     MatCardModule,
     MatSelectModule,
-    ReactiveFormsModule,
+    MatSnackBarModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
@@ -36,6 +37,7 @@ Ce module set à rassembler les dépendances les plus récurrentes
     MatIconModule,
     MatCardModule,
     MatSelectModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
   ]
 })
