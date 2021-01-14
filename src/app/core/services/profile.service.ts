@@ -3,6 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {ProfileUpdateInterface} from '../interfaces/profileUpdate.interface';
+import {AuthService} from './auth.service';
+import {tap} from 'rxjs/operators';
+import {User} from '../entities/user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +20,10 @@ export class ProfileService {
     return this.httpClient.patch(
       `${environment.api}/api/profile`,
       updateChanges
+    ).pipe(
+      tap((user: User) => {
+        AuthService.user = user;
+      })
     );
   }
 
