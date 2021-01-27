@@ -19,7 +19,7 @@ export class MatchService {
 
   matchs$(): Observable<any> {
     return this.httpClient.post(
-      `${environment.api}/api/user/matchs`,
+      `${environment.api}/user/matchs`,
       {
         max: 30
       }

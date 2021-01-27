@@ -25,7 +25,7 @@ export class ProfileService {
 
   update(updateUser: ProfileInterface) {
     return this.httpClient.patch(
-      `${environment.api}/api/profile`,
+      `${environment.api}/profile`,
       updateUser
     ).pipe( tap((user: User) => {
       // On met à jour la donnée de l'utilisateur connecté

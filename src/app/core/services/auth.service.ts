@@ -31,7 +31,7 @@ export class AuthService {
 
   signin(email: string, password: string): Observable<any> {
     return this.httpClient.post(
-      `${environment.api}/api/login_check`,
+      `${environment.api}/login_check`,
       {
         email,
         password
@@ -45,7 +45,7 @@ export class AuthService {
 
   signup(user: User): Observable<any> {
     return this.httpClient.post(
-      `${environment.api}/api/signup`,
+      `${environment.api}/signup`,
       user
     );
   }
@@ -53,7 +53,7 @@ export class AuthService {
   // vérifier si l'utilisateur est connecté et récupérer les données de l'utilisateur
   me(): Observable<any> {
     return this.httpClient.get(
-      `${environment.api}/api/ping`,
+      `${environment.api}/ping`,
     ).pipe(
       tap((user: User) => {
         AuthService.user = user;

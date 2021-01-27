@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'https://api-teaching.wecolearn.com'
+  api: 'https://api-teaching.wecolearn.com/api'
 };
 
 
