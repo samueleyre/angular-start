@@ -12,7 +12,7 @@ import {TagInterface} from '../../../core/interfaces/tag';
 })
 export class ProfileComponent implements OnInit {
 
-  tags: Observable<Tag[]>;
+  tags: Observable<TagInterface[]>;
 
   constructor(
     private fb: FormBuilder,
