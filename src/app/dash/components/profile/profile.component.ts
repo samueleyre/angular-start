@@ -35,9 +35,6 @@ export class ProfileComponent implements OnInit {
     this.firstNameControl.setValue(profile.first_name);
     this.lastNameControl.setValue(profile.last_name);
     this.tagsControl.setValue(profile.tags);
-    this.tagsControl.valueChanges.subscribe((val) => {
-      console.log(val);
-    });
   }
 
   get firstNameControl() {
@@ -53,10 +50,13 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
+
+    // getRawValues permet de récupérer toutes les valeurs du formulaire sous la forme d'un objet
     const userChanges = this.userForm.getRawValue();
     this.profileService.update(userChanges).subscribe();
   }
 
+  // cette fonction a aider "mat-select" à relier l'objet sélectionné parmi celles de référence : les options.
   compareFn(tag1: TagInterface, tag2: TagInterface) {
     return tag1 && tag2 ? tag1.id === tag2.id : tag1 === tag2;
   }

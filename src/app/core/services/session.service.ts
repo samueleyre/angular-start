@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+/*
+Service dédié à la gestion du stockage du token de session
+ */
 @Injectable({
   providedIn: 'root'
 })

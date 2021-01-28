@@ -6,6 +6,9 @@ import {environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {User} from '../entities/user';
 
+/*
+Service dédié à géré les données de l'utilisateur connecté
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +19,7 @@ export class ProfileService {
   ) { }
 
   get() {
+    // On récupère l'utilisateur connecté dans AuthService, pas besoin de faire une nouvelle requête
     return AuthService.user;
   }
 
@@ -24,6 +28,7 @@ export class ProfileService {
       `${environment.api}/api/profile`,
       updateUser
     ).pipe( tap((user: User) => {
+      // On met à jour la donnée de l'utilisateur connecté
       AuthService.user = user;
     }));
   }

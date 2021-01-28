@@ -7,6 +7,11 @@ import {environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {SessionService} from './session.service';
 
+/*
+Service dédié aux appels à l'API lié à l'authentification,
+à stocker l'utilisateur connecté,
+et à gérer le token d'authentification
+ */
 @Injectable({
   providedIn: 'root'
 })

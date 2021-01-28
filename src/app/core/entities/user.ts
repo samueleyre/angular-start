@@ -2,6 +2,10 @@
 
 import {TagInterface} from '../interfaces/tag';
 
+/*
+Une entité sert à avoir un object avec des propriétés qui nous aident à controller son format
+par exemple : pour "parser" les valeurs avant envoie à l'API
+ */
 export class User {
   id?: string;
   first_name: string;

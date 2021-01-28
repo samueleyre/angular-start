@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   ) {
   }
 
+  // on récupère l'utilisateur connecté
   get user(): User {
     return AuthService.user;
   }

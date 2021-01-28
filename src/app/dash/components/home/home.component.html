@@ -4,6 +4,7 @@
 
 <p>Voici les apprenants qui souhaitent apprendre la même chose que vous :</p>
 
+<!-- | async est une manière de faire un subscribe depuis le html, quand une valeur est reçue elle est stocké dans 'matchs'  -->
 <div class="cards-container" *ngIf="matchs$ | async as matchs">
   <div *ngFor="let matchedUser of matchs">
     <mat-card>

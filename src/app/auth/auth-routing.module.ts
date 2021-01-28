@@ -13,7 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes)], // important de mettre forChild car c'est un module enfant
   exports: [RouterModule]
 })
 export class AuthRoutingModule { }

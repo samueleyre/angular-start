@@ -5,8 +5,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
-// service pour récupérer les profils qui matchent
-
+/*
+service pour récupérer les profils qui matchent
+ */
 @Injectable({
   providedIn: 'root'
 })

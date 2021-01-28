@@ -3,6 +3,9 @@ import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
+/*
+Service dédié aux tags pour l'auto-complete
+ */
 @Injectable({
   providedIn: 'root'
 })

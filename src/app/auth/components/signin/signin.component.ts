@@ -16,9 +16,15 @@ export class SigninComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
   ) {
+
+    // on est déconnecté quand on arrive sur la page de connexion ( simplification )
     this.authService.signout();
   }
 
+  /**
+   * Création du formGroup qui permet de gérer les données du formulaire
+   * 'samuel@wecolearn.com' et 'admin1234' sont les données initiales du formulaires ( permet ici de gagner du temps pour les tests )
+   */
   userForm = this.fb.group(
     {
       email: ['samuel@wecolearn.com',  [Validators.required, Validators.email]],
@@ -29,6 +35,9 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Raccourci pour récupérer le FormControl 'email'
+   */
   get emailControl() {
     return this.userForm.get('email');
   }
@@ -38,15 +47,19 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
+
+    // on envoie les paramètres de connexion au service qui gère la connexion à l'api
     this.authService.signin(
-      this.emailControl.value,
-      this.passwordControl.value
-    ).subscribe((token) => {
+      this.emailControl.value, // la valeur du champs email
+      this.passwordControl.value // la valeur du champs password
+    ).subscribe(
+      (token) => {
       // connexion réussie !
+      // on est envoyé à la page d'accueil du dashboard :
         this.router.navigate(['dash/home']);
       },
       (err) => {
-        // afficher une erreur de connexion
+        // on pourrait afficher une erreur de connexion
       }
     );
   }
