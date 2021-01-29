@@ -14,4 +14,8 @@ export class AppComponent {
     return AuthService.isSignedIn;
   }
 
+  get isAdmin(): boolean {
+    return AuthService.isAdmin;
+  }
+
 }

@@ -2,7 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import {AdminRoutingModule} from './admin-routing.module';
-import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule,
+  MatOptionModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatTableModule
+} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -14,7 +23,12 @@ import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule} 
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class AdminModule { }

@@ -21,4 +21,18 @@ export class TagAdminService {
     ).pipe(map((tags: TagInterface[]) => tags.filter(tag => tag['type'] === 0)));
   }
 
+  add(tag: {name: string}): Observable<any> {
+    return this.httpClient.post(
+      `${environment.api}/admin/tag`,
+      tag
+    );
+  }
+
+  delete(id: number): Observable<any> {
+    return this.httpClient.delete(
+      `${environment.api}/admin/tag/${id}`,
+    );
+  }
+
+
 }

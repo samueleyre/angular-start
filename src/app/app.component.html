@@ -12,7 +12,7 @@
     <button *ngIf="isSignedIn" [routerLink]="'dash/home'" mat-menu-item>
       <span>Accueil</span>
     </button>
-    <button *ngIf="isSignedIn" [routerLink]="'admin/home'" mat-menu-item>
+    <button *ngIf="isSignedIn && isAdmin" [routerLink]="'admin/home'" mat-menu-item>
       <span>Admin</span>
     </button>
     <button *ngIf="isSignedIn" [routerLink]="'dash/profile'" mat-menu-item>
