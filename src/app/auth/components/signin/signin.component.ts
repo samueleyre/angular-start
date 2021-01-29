@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 import {Router} from '@angular/router';
-import {SessionService} from '../../../core/services/session.service';
 
 @Component({
   selector: 'app-signin',
@@ -35,9 +34,6 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
 
-  /**
-   * Raccourci pour récupérer le FormControl 'email'
-   */
   get emailControl() {
     return this.userForm.get('email');
   }

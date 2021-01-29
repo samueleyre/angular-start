@@ -1,23 +1,14 @@
-<h1>Page de profil</h1>
+<h1>Profil</h1>
 
 <form [formGroup]="userForm" (ngSubmit)="updateProfile()">
-
-  <mat-form-field>
-    <mat-label>Prénom</mat-label>
-    <input type="text" matInput formControlName="first_name">
-    <mat-error *ngIf="this.firstNameControl.hasError('required')">le prénom est obligatoire</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Nom</mat-label>
-    <input type="text" matInput formControlName="last_name">
-    <mat-error *ngIf="this.lastNameControl.hasError('required')">le nom est obligatoire</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
+  <app-firstname-form-field [parentFormGroup]="userForm"></app-firstname-form-field>
+  <app-lastname-form-field [parentFormGroup]="userForm"></app-lastname-form-field>
+  <mat-form-field appearance="legacy">
     <mat-label>Domaines d'apprentissage</mat-label>
-    <mat-select [compareWith]="compareFn" formControlName="tags" multiple>
-      <mat-option *ngFor="let tag of tags | async" [value]="tag">{{tag.name}}</mat-option>
+    <mat-select [compareWith]="compareIds" formControlName="tags" multiple>
+      <mat-option *ngFor="let tag of (tags$ | async)" [value]="tag">{{tag.name}}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button color="accent" type="submit">Mettre à jour</button>
+  <button mat-raised-button color="accent" type="submit">Enregistrer</button>
 </form>

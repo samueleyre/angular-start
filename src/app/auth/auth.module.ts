@@ -5,6 +5,7 @@ import {AuthRoutingModule} from './auth-routing.module';
 import { SignupComponent } from './components/signup/signup.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
+import {UserPartsModule} from '../shared/user-parts/user-parts.module';
 
 /*
 Le Module 'Auth' est dédié à toute l'UI lié à l'authentification : login, inscription ...
@@ -15,6 +16,7 @@ Le Module 'Auth' est dédié à toute l'UI lié à l'authentification : login, i
     ReactiveFormsModule,
     AuthRoutingModule,
     SharedModule,
+    UserPartsModule,
   ]
 })
 export class AuthModule { }

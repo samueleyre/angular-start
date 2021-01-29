@@ -22,6 +22,7 @@ export class AuthService {
     private sessionService: SessionService
   ) { }
 
+  // On stock ici les données de l'utilisateur connecté
   static user: User = null;
 
   static get isSignedIn(): boolean {

@@ -3,8 +3,9 @@ h1 {
 }
 
 form {
+  max-width: 200px;
   display: flex;
   flex-direction: column;
-  max-width: 200px;
+  width: 100%;
   margin: auto;
 }

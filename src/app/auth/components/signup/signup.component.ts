@@ -14,47 +14,26 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+  ) { }
 
-) { }
-
-  userForm = this.fb.group(
-    {
-      email: [null,  [Validators.required, Validators.email]],
-      password: ['password', [Validators.required, Validators.minLength(6)]],
-      first_name: [null, [Validators.required]],
-      last_name: [null, [Validators.required]],
-    }
-  );
+  userForm = this.fb.group({
+    first_name: [null, [Validators.required]],
+    last_name: [null, [Validators.required]],
+    email: [null, [Validators.required, Validators.email]],
+    password: ['password', [Validators.required, Validators.minLength(6)]],
+  });
 
   ngOnInit() {
   }
 
-  get emailControl() {
-    return this.userForm.get('email');
-  }
-
-  get passwordControl() {
-    return this.userForm.get('password');
-  }
-
-  get firstNameControl() {
-    return this.userForm.get('first_name');
-  }
-
-  get lastNameControl() {
-    return this.userForm.get('last_name');
-  }
-
   signup() {
     const newUser = new User(this.userForm.getRawValue());
-
     this.authService.signup(newUser).subscribe(
       () => {
-        // inscription à marché
+        // inscription réussie !
         this.authService.signin(newUser.email, newUser.password).subscribe(
           () => {
-              // la connexion a réussi
             this.router.navigate(['dash/home']);
           },
           () => {

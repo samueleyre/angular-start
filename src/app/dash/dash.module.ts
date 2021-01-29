@@ -6,6 +6,7 @@ import {SharedModule} from '../shared/shared.module';
 import {MatCardModule, MatSelectModule} from '@angular/material';
 import { ProfileComponent } from './components/profile/profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {UserPartsModule} from '../shared/user-parts/user-parts.module';
 
 @NgModule({
   declarations: [HomeComponent, ProfileComponent],
@@ -14,7 +15,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     SharedModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    UserPartsModule
   ]
 })
 export class DashModule { }

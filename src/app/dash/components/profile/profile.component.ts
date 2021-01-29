@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProfileService} from '../../../core/services/profile.service';
-import {TagService} from '../../../core/services/tag.service';
+import {AuthService} from '../../../core/services/auth.service';
 import {Observable} from 'rxjs';
+import {TagService} from '../../../core/services/tag.service';
 import {TagInterface} from '../../../core/interfaces/tag';
 
 @Component({
@@ -12,29 +13,27 @@ import {TagInterface} from '../../../core/interfaces/tag';
 })
 export class ProfileComponent implements OnInit {
 
-  tags: Observable<TagInterface[]>;
+  tags$: Observable<TagInterface[]>;
 
   constructor(
     private fb: FormBuilder,
     private profileService: ProfileService,
     private tagService: TagService
   ) {
-    this.tags = this.tagService.get();
+    this.tags$ = this.tagService.get();
   }
 
-  userForm = this.fb.group(
-    {
-      first_name: [null, [Validators.required]],
-      last_name: [null, [Validators.required]],
-      tags: [null]
-    }
-  );
+  userForm = this.fb.group({
+    first_name: [null, [Validators.required]],
+    last_name: [null, [Validators.required]],
+    tags: [[]]
+  });
 
   ngOnInit() {
-    const profile = this.profileService.get();
-    this.firstNameControl.setValue(profile.first_name);
-    this.lastNameControl.setValue(profile.last_name);
-    this.tagsControl.setValue(profile.tags);
+    const user = AuthService.user;
+    this.firstNameControl.setValue(user.first_name);
+    this.lastNameControl.setValue(user.last_name);
+    this.tagsControl.setValue(user.tags);
   }
 
   get firstNameControl() {
@@ -50,14 +49,13 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
-
     // getRawValues permet de récupérer toutes les valeurs du formulaire sous la forme d'un objet
     const userChanges = this.userForm.getRawValue();
     this.profileService.update(userChanges).subscribe();
   }
 
-  // cette fonction a aider "mat-select" à relier l'objet sélectionné parmi celles de référence : les options.
-  compareFn(tag1: TagInterface, tag2: TagInterface) {
-    return tag1 && tag2 ? tag1.id === tag2.id : tag1 === tag2;
+  compareIds(tagOption: TagInterface, tagSelection: TagInterface): boolean {
+    return tagOption && tagSelection ? tagOption.id === tagSelection.id : tagOption === tagSelection;
   }
+
 }
