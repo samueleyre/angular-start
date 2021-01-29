@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {AuthService} from './services/auth.service';
 import {catchError, map, tap} from 'rxjs/operators';
 import {User} from './entities/user';
+import {MatSnackBar} from '@angular/material';
 
 /*
 Guard qui autorise uniquement les utilisateurs connectés et dans le cas de route admin vérifie aussi le role de l'utilisateur
@@ -15,7 +16,8 @@ export class CanActivateGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
     ) {
   }
 
@@ -44,12 +46,20 @@ export class CanActivateGuard implements CanActivate {
 
         // 1er cas : il y a avait une erreur
         if ('status' in response && (response.status === 401 || response.status === 403)) {
-          this.router.navigate(['/auth/signin']);
+          this.router.navigate(['/auth/signin']).then(() => {
+              this.snackBar.open(`Vous devez être connecté pour accéder à cette page !`, null, {
+                duration: 2000,
+              });
+          });
           return false;
 
         //  2ème cas : pas d'erreur mais on vérifie que si la route est admin, l'utilisateur a bien les droits
         } else if ('admin' in next.data && 'roles' in response && !response.roles.includes('ROLE_ADMIN')) {
-          this.router.navigate(['/auth/signin']);
+          this.router.navigate(['/auth/signin']).then(() => {
+            this.snackBar.open(`Vous devez être admin pour accéder à cette page !`, null, {
+              duration: 2000,
+            });
+          });
           return false;
         }
         return true;

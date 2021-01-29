@@ -5,6 +5,7 @@ import {AuthService} from '../../../core/services/auth.service';
 import {Observable} from 'rxjs';
 import {TagService} from '../../../core/services/tag.service';
 import {TagInterface} from '../../../core/interfaces/tag';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private profileService: ProfileService,
-    private tagService: TagService
+    private tagService: TagService,
+    private snackBar: MatSnackBar
   ) {
     this.tags$ = this.tagService.get();
   }
@@ -51,7 +53,13 @@ export class ProfileComponent implements OnInit {
   updateProfile(): void {
     // getRawValues permet de récupérer toutes les valeurs du formulaire sous la forme d'un objet
     const userChanges = this.userForm.getRawValue();
-    this.profileService.update(userChanges).subscribe();
+    this.profileService.update(userChanges).subscribe(
+      () => {
+        this.snackBar.open(`Profil mis à jour !`, null, {
+          duration: 2000,
+        });
+      }
+    );
   }
 
   compareIds(tagOption: TagInterface, tagSelection: TagInterface): boolean {
