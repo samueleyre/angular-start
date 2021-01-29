@@ -12,7 +12,6 @@ const routes: Routes = [
     path: 'dash',
     // guard pour empêcher l'accès aux utilisateurs non connectés
     canActivate: [CanActivateGuard],
-    data: { admin : true },
     // lazy loading :
     loadChildren: () => import('./dash/dash.module').then(mod => mod.DashModule),
   },
