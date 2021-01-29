@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { PasswordFormFieldComponent } from './components/password-form-field/password-form-field.component';
 import { FirstnameFormFieldComponent } from './components/firstname-form-field/firstname-form-field.component';
 import { LastnameFormFieldComponent } from './components/lastname-form-field/lastname-form-field.component';
+import {SharedModule} from '../shared.module';
 
 
 
@@ -23,10 +24,7 @@ import { LastnameFormFieldComponent } from './components/lastname-form-field/las
     LastnameFormFieldComponent
   ],
   imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule
+    SharedModule,
   ]
 })
 export class UserPartsModule { }

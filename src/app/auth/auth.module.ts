@@ -13,9 +13,8 @@ Le Module 'Auth' est dédié à toute l'UI lié à l'authentification : login, i
 @NgModule({
   declarations: [SigninComponent, SignupComponent],
   imports: [
-    ReactiveFormsModule,
-    AuthRoutingModule,
     SharedModule,
+    AuthRoutingModule,
     UserPartsModule,
   ]
 })
