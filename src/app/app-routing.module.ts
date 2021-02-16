@@ -16,9 +16,9 @@ const routes: Routes = [
     loadChildren: () => import('./dash/dash.module').then(mod => mod.DashModule),
   },
   {
-    // donnée utilisée pour dire que c'est une route admin :
     path: 'admin',
     canActivate: [CanActivateGuard],
+    // donnée utilisée pour dire que c'est une route admin :
     data: { admin: true},
     loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
   },
