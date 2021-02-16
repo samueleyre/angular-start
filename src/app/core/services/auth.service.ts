@@ -65,7 +65,7 @@ export class AuthService {
     );
   }
 
-  signout(): void {
+  signOut(): void {
     this.sessionService.clear();
     AuthService.user = null;
   }

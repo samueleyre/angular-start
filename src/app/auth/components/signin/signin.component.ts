@@ -15,9 +15,6 @@ export class SigninComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
   ) {
-
-    // on est déconnecté quand on arrive sur la page de connexion ( simplification )
-    this.authService.signout();
   }
 
   /**
